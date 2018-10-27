@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-;
+
+
+
 
 @Entity(name="PracticeUser")
 public class PracticeUserDto implements Serializable{
@@ -21,6 +23,7 @@ public class PracticeUserDto implements Serializable{
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	
 	public long getId() {
 		return id;
@@ -41,9 +44,13 @@ public class PracticeUserDto implements Serializable{
 	private String password;
 	@Column(nullable=false)
 	private String userId;
-	@OneToMany(mappedBy="userDetals", cascade=CascadeType.ALL)
 	
+	@OneToMany(mappedBy="userDetals", cascade=CascadeType.ALL)
 	private List<AddressDto> address;
+	
+	@OneToMany(mappedBy="userDetails",cascade=CascadeType.ALL)
+	private List<JourneyDto> journies;
+	
 	
 	public String getFirstName() {
 		return firstName;
@@ -81,10 +88,17 @@ public class PracticeUserDto implements Serializable{
 	public void setAddress(List<AddressDto> address) {
 		this.address = address;
 	}
+	public List<JourneyDto> getJournies() {
+		return journies;
+	}
+	public void setJournies(List<JourneyDto> journies) {
+		this.journies = journies;
+	}
 	@Override
 	public String toString() {
 		return "PracticeUserDto [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", userId=" + userId + "]";
+				+ ", password=" + password + ", userId=" + userId + ", address=" + address + ", journies=" + journies
+				+ "]";
 	}
 	
 	

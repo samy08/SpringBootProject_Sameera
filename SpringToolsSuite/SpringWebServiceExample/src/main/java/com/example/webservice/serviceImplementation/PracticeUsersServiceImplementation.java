@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.webservice.PracticeUserRepo;
 import com.example.webservice.dto.AddressDto;
+import com.example.webservice.dto.JourneyDto;
 import com.example.webservice.dto.PracticeUserDto;
 import com.example.webservice.service.PracticeUsersService;
 
@@ -17,6 +18,9 @@ public class PracticeUsersServiceImplementation  implements PracticeUsersService
 	
 	@Autowired
 	PracticeUserRepo userRepo;
+	
+	
+	
 	@Override
 	public PracticeUserDto createPracticeUser(PracticeUserDto user) {
 		PracticeUserDto createdUserDetails=new PracticeUserDto();
@@ -26,6 +30,13 @@ public class PracticeUsersServiceImplementation  implements PracticeUsersService
 			address.setAddressId("70");
 			user.getAddress().set(i, address);
 		}
+		 for(int t=0;t<user.getJournies().size();t++) {
+			 JourneyDto journies;
+			journies=user.getJournies().get(t);
+			journies.setUserDetails(user);
+			user.getJournies().set(t,journies);
+			
+		 }
 		
 		user.setUserId("50");
 		

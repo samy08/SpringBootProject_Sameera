@@ -9,6 +9,7 @@ public class PracticeUserDetails {
 	private String userId;
 	private String password;
 	private List<AddressDetails> address;
+	private List<JourneyDetails> journies;
 	
 	public String getUserId() {
 		return userId;
@@ -45,6 +46,12 @@ public class PracticeUserDetails {
 	}
 	public void setAddress(List<AddressDetails> address) {
 		this.address = address;
+	}
+	public List<JourneyDetails> getJournies() {
+		return journies;
+	}
+	public void setJournies(List<JourneyDetails> journies) {
+		this.journies = journies;
 	}
 	
 }
