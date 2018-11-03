@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.webservice.AddressUserRepo;
 import com.example.webservice.PracticeUserRepo;
 import com.example.webservice.dto.AddressDto;
 import com.example.webservice.dto.JourneyDto;
@@ -20,14 +21,16 @@ public class PracticeUsersServiceImplementation  implements PracticeUsersService
 	PracticeUserRepo userRepo;
 	
 	
+
+	
 	
 	@Override
 	public PracticeUserDto createPracticeUser(PracticeUserDto user) {
 		PracticeUserDto createdUserDetails=new PracticeUserDto();
 		for(int i=0;i<user.getAddress().size();i++) {
 			AddressDto address=user.getAddress().get(i);
-			address.setUserDetals(user);
-			address.setAddressId("70");
+			address.setUserDetails(user);
+			address.setAddressId("50");
 			user.getAddress().set(i, address);
 		}
 		 for(int t=0;t<user.getJournies().size();t++) {
@@ -86,6 +89,15 @@ public class PracticeUsersServiceImplementation  implements PracticeUsersService
 		}
 		System.out.println("**************** list of users*********"+list );
 		return list;
+	}
+	
+	@Override
+	public PracticeUserDto getUserById(long id) {
+		// TODO Auto-generated method stub
+		
+		PracticeUserDto userById=new PracticeUserDto();
+		userById=userRepo.findById(id);
+		return userById;
 	}
 	
 

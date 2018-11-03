@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -45,10 +47,12 @@ public class PracticeUserDto implements Serializable{
 	@Column(nullable=false)
 	private String userId;
 	
-	@OneToMany(mappedBy="userDetals", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="userDetails", cascade=CascadeType.ALL)
+	
 	private List<AddressDto> address;
 	
 	@OneToMany(mappedBy="userDetails",cascade=CascadeType.ALL)
+	
 	private List<JourneyDto> journies;
 	
 	

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity(name="addresses")
 public class AddressDto implements Serializable{
@@ -37,7 +39,8 @@ public class AddressDto implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="PracticeUser_id")
-	private PracticeUserDto userDetals;
+
+	private PracticeUserDto userDetails;
 	
 	
 	
@@ -84,10 +87,11 @@ public class AddressDto implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
-	public PracticeUserDto getUserDetals() {
-		return userDetals;
+	public PracticeUserDto getUserDetails() {
+		return userDetails;
 	}
-	public void setUserDetals(PracticeUserDto userDetals) {
-		this.userDetals = userDetals;
+	public void setUserDetails(PracticeUserDto userDetails) {
+		this.userDetails = userDetails;
 	}
+	
 }

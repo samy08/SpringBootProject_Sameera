@@ -50,7 +50,7 @@ public void setToPlace(String toPlace) {
 public void setTrainName(String trainName) {
 	this.trainName = trainName;
 }
-;
+
 
 
 }

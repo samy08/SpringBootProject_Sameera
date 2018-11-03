@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity(name="JourneyList")
 public class JourneyDto implements Serializable{
@@ -38,6 +40,7 @@ public class JourneyDto implements Serializable{
 	private String toPlace;
 	@ManyToOne
 	@JoinColumn(name="PracticeUser_id")
+	
 	private PracticeUserDto userDetails;
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.webservice.dto.AddressDto;
 import com.example.webservice.dto.PracticeUserDto;
 import com.example.webservice.model.PracticeUserDetails;
+import com.example.webservice.response.AddressResponse;
 import com.example.webservice.response.PracticeUserResponse;
+import com.example.webservice.response.PracticeUserResponseById;
+import com.example.webservice.service.AddressService;
 import com.example.webservice.service.PracticeUsersService;
 import com.example.webservice.serviceImplementation.PracticeUsersServiceImplementation;
 
@@ -29,7 +34,8 @@ public class UserController{
 	
 	@Autowired
 	PracticeUsersService practiceUser;
-	
+	@Autowired
+	AddressService userAddress;
 	static Logger log=Logger.getLogger(UserController.class);
 	/*@GetMapping(path="/{email}")
 	public PracticeUserResponse getUsers(@PathVariable String email) {
@@ -61,6 +67,17 @@ public class UserController{
 		userdto=practiceUser.getUsersById(userId);
 		BeanUtils.copyProperties(userdto, response);
 		return response;
+	}
+	
+@GetMapping(path="/{userName}/addresses")
+	public List<AddressResponse> getAddressByUserName(@PathVariable String userName ) {
+		List<AddressResponse> response =new ArrayList<>();
+		
+		List<AddressDto> useraddresses=userAddress.getUserAddressByName(userName); 
+		java.lang.reflect.Type listType=new TypeToken<List<AddressResponse>>() {}.getType();
+		response=new ModelMapper().map(useraddresses, listType);
+ 		return response;
+		
 	}
 	
     @PostMapping
